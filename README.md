@@ -4,7 +4,7 @@
 The ThinkPHP6+ Auth Package
 
 ## 安装
-> composer require hulangfy/think-auth
+> composer require hulang/think-auth
 
 ## 配置
 
