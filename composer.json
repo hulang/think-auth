@@ -1,6 +1,6 @@
 {
     "name": "hulang/think-auth",
-    "description": "The ThinkPHP6+ Auth Package",
+    "description": "The ThinkPHP6.1 Auth Package",
     "license": "Apache-2.0",
     "authors": [
         {
