@@ -1,7 +1,11 @@
-> 修改自：zz-studio/think-auth
+## thinkphp6.1+ 授权扩展包
 
-# think-auth
-The ThinkPHP6+ Auth Package
+### 环境
+
+1. php >= 7.2.5
+2. thinkphp >=6.1
+
+> 修改自：zz-studio/think-auth
 
 ## 安装
 > composer require hulang/think-auth
