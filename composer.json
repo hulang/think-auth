@@ -1,16 +1,16 @@
 {
     "name": "hulang/think-auth",
-    "description": "The ThinkPHP6.1 Auth Package",
+    "description": "The ThinkPHP6.1+ Auth Package",
     "license": "Apache-2.0",
     "authors": [
         {
-            "name": "快乐浪子哥",
+            "name": "hulang",
             "email": "hulangfy@163.com"
         }
     ],
     "require": {
         "php": ">=7.2.5",
-        "topthink/framework": "^6.0"
+        "topthink/framework": ">=6.0"
     },
     "autoload": {
         "psr-4": {
