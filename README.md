@@ -1,9 +1,9 @@
-## thinkphp6.1+ 授权扩展包
+## ThinkPHP 6.1+ 授权扩展包
 
 ### 环境
 
-1. php >= 7.2.5
-2. thinkphp >=6.1
+- php >= 7.2.5
+- ThinkPHP >=6.1
 
 > 修改自：zz-studio/think-auth
 
@@ -13,7 +13,7 @@
 ## 配置
 
 ### 公共配置
-```
+```php
 // auth配置
 'auth'  => [
     'auth_on'           => 1, // 权限开关
@@ -25,7 +25,7 @@
 ### 导入数据表
 > `think_` 为自定义的数据表前缀
 
-```
+```sql
 ------------------------------
 -- think_auth_rule，规则表，
 -- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，condition：规则表达式，为空表示存在就验证，不为空表示按照条件验证
@@ -98,7 +98,7 @@ Auth权限认证是按规则进行认证。
 
 ## 使用
 判断权限方法
-```
+```php
 // 引入类库
 use think\Auth;
 
@@ -108,7 +108,7 @@ if(Auth::check('show_button', 1)){// 第一个参数是规则名称,第二个参
 }else{
 	//没有显示操作按钮的权限
 }
-```
+```php
 或通过全局函数进行判断
 ```
 if(auth_check('show_button', 1)){// 第一个参数是规则名称,第二个参数是用户UID
@@ -126,7 +126,7 @@ Auth类也可以对节点进行认证，我们只要将规则名称，定义为�
 php think make:middleware Auth
 ```
 这个指令会 `application/http/middleware` 目录下面生成一个 Auth 中间件。
-```
+```php
 <?php
 namespace app\http\middleware;
 
