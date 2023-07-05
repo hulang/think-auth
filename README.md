@@ -1,9 +1,9 @@
-## ThinkPHP 6.1+ 授权扩展包
+## ThinkPHP 8.0.0 授权扩展包
 
 ### 环境
 
-- php >= 7.2.5
-- ThinkPHP >=6.1
+- php >=8.0.0
+- ThinkPHP ^8.0
 
 > 修改自：zz-studio/think-auth
 
