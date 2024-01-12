@@ -15,23 +15,23 @@ class RoleRule extends Model
 {
     /**
      * 表名
-     * @var string
+     * @var mixed|string
      */
     protected $name = 'AuthRoleRule';
     /**
      * 数据表主键 复合主键使用数组定义
-     * @var string|array
+     * @var mixed|string|array
      */
     protected $pk = 'role_id';
     /**
      * 追加一对一字段
-     * @var array
+     * @var mixed|array
      */
     protected $append = ['rules'];
 
     /**
      * 角色规则表列
-     * @return \think\model\relation\HasOne
+     * @return mixed|\think\model\relation\HasOne
      */
     public function rules()
     {

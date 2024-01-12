@@ -37,9 +37,9 @@ if (!function_exists('get_auth_role_ids')) {
      * @param $uid
      * @return mixed
      */
-    function get_auth_role_ids($uid)
+    function get_auth_role_ids($uid = 0, $field = 'role_id')
     {
-        return \think\Auth::roles($uid, 'role_id');
+        return \think\Auth::roles($uid, $field);
     }
 }
 
@@ -49,8 +49,8 @@ if (!function_exists('get_auth_roles')) {
      * @param $uid
      * @return mixed
      */
-    function get_auth_roles($uid)
+    function get_auth_roles($uid = 0, $field = '')
     {
-        return \think\Auth::roles($uid);
+        return \think\Auth::roles($uid, $field);
     }
 }

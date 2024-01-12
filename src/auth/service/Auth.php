@@ -18,11 +18,11 @@ class Auth
     protected $user;
     /**
      * 默认配置
-     * @var array
+     * @var mixed|array
      */
     protected $config = [
         'auth_on' => 1, // 权限开关
-        'auth_type' => 1, // 认证方式，1为实时认证；2为登录认证。
+        'auth_type' => 1, // 认证方式,1为实时认证；2为登录认证。
         'auth_user' => 'member', // 用户信息表
     ];
 
@@ -32,7 +32,7 @@ class Auth
      */
     public function __construct()
     {
-        //可设置配置项 auth, 此配置项为数组。
+        // 可设置配置项 auth, 此配置项为数组。
         $config = Config::get('auth', []);
         if (is_array($config)) {
             $this->config = array_merge($this->config, $config);
@@ -48,7 +48,7 @@ class Auth
      * @param int $type 认证类型
      * @param string $mode 执行check的模式
      * @param string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
-     * @return mixed 通过验证返回true;失败返回false
+     * @return mixed|bool 通过验证返回true;失败返回false
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
@@ -64,7 +64,8 @@ class Auth
         if (is_string($name)) {
             $name = explode(',', strtolower($name));
         }
-        $list = []; //保存验证通过的规则名
+        // 保存验证通过的规则名
+        $list = [];
         if ('url' == $mode) {
             $REQUEST = unserialize(strtolower(serialize(request()->param())));
         }
@@ -72,11 +73,12 @@ class Auth
         foreach ($authList as $auth) {
             $query = preg_replace('/^.+\?/U', '', $auth);
             if ('url' == $mode && $query != $auth) {
-                parse_str($query, $param); //解析规则中的param
+                // 解析规则中的|param
+                parse_str($query, $param);
                 $intersect = array_intersect_assoc($REQUEST, $param);
                 $auth = preg_replace('/\?.*$/U', '', $auth);
                 if (in_array($auth, $name) && $intersect == $param) {
-                    //如果节点相符且url参数满足
+                    // 如果节点相符且url参数满足
                     $list[] = $auth;
                 }
             } else {
@@ -92,7 +94,6 @@ class Auth
         if ('and' == $relation && empty($diff)) {
             return true;
         }
-
         return false;
     }
 
@@ -143,7 +144,8 @@ class Auth
      */
     protected function getAuthList($uid, $type)
     {
-        static $_authList = []; //保存用户验证通过的权限列表
+        // 保存用户验证通过的权限列表
+        static $_authList = [];
         $t = implode(',', (array)$type);
 
         if (isset($_authList[$uid . $t])) {
@@ -167,7 +169,7 @@ class Auth
         } else {
             $user = [];
         }
-        //循环规则，判断结果。
+        // 循环规则,判断结果。
         $authList = [];
         foreach ($roles as $role) {
             foreach ($role->rules as $rule) {
@@ -177,9 +179,10 @@ class Auth
                     continue;
                 }
                 if (!empty($rule['condition'])) {
-                    //根据condition进行验证
+                    // 根据condition进行验证
                     $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
-                    //dump($command); //debug
+                    // dump($command);
+                    // debug
                     @(eval('$condition=(' . $command . ');'));
                     if ($condition) {
                         $authList[] = strtolower($rule['name']);
@@ -192,7 +195,7 @@ class Auth
         }
         $_authList[$uid . $t] = $authList;
         if (2 == $this->config['auth_type']) {
-            //规则列表结果保存到session
+            // 规则列表结果保存到|session
             Session::set('_auth_list_' . $uid . $t, $authList);
         }
 

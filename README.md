@@ -27,8 +27,12 @@
 
 ```sql
 ------------------------------
--- think_auth_rule，规则表，
--- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，condition：规则表达式，为空表示存在就验证，不为空表示按照条件验证
+-- think_auth_rule,规则表
+-- id:主键
+-- name:规则唯一标识
+-- title:规则中文名称
+-- status:状态:为1正常,为0禁用
+-- condition:规则表达式,为空表示存在就验证,不为空表示按照条件验证
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_rule`;
 CREATE TABLE `think_auth_rule` (
@@ -42,8 +46,10 @@ CREATE TABLE `think_auth_rule` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限路由表';
 ------------------------------
--- think_auth_role 用户组表， 
--- id：主键， title:用户组中文名称，status 状态：为1正常，为0禁用
+-- think_auth_role 用户组表
+-- id:主键
+-- title:用户组中文名称
+-- status:状态:为1正常,为0禁用
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_role`;
 CREATE TABLE `think_auth_role` (
@@ -55,7 +61,8 @@ CREATE TABLE `think_auth_role` (
 
 ------------------------------
 -- think_auth_role_user 用户与组关系表
--- user_id: 用户id，role_id：用户组id
+-- user_id:用户id
+-- role_id:用户组id
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_role_user`;
 CREATE TABLE `think_auth_role_user` (
@@ -68,7 +75,8 @@ CREATE TABLE `think_auth_role_user` (
 
 ------------------------------
 -- think_auth_role_rule 用户与组关系表
--- rule_id: 规则id，role_id：用户组id
+-- rule_id:规则id
+-- role_id:用户组id
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_role_rule`;
 CREATE TABLE `think_auth_role_rule` (

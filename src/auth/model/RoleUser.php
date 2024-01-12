@@ -17,13 +17,13 @@ class RoleUser extends Model
     protected $name = 'AuthRoleUser';
     /**
      * 数据表主键 复合主键使用数组定义
-     * @var string|array
+     * @var mixed|string|array
      */
     protected $pk = 'role_id';
 
     /**
      * 用户角色列表
-     * @return \think\model\relation\HasMany
+     * @return mixed|\think\model\relation\HasMany
      */
     public function rules()
     {
@@ -32,7 +32,7 @@ class RoleUser extends Model
 
     /**
      * 关联角色
-     * @return \think\model\relation\HasOne
+     * @return mixed|\think\model\relation\HasOne
      */
     public function role()
     {

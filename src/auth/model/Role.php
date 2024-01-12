@@ -31,7 +31,7 @@ class Role extends Model
     /**
      * 标准化状态值
      * @param $val
-     * @return int
+     * @return mixed|int
      */
     protected function setStatusAttr($val)
     {
@@ -51,7 +51,7 @@ class Role extends Model
     /**
      * 用户数
      * @return float|int|string
-     * @throws \think\Exception
+     * @throws mixed|\think\Exception
      */
     protected function getUserNumAttr()
     {
@@ -61,7 +61,7 @@ class Role extends Model
 
     /**
      * 角色对应权限规则
-     * @return \think\model\relation\HasMany
+     * @return mixed|\think\model\relation\HasMany
      */
     public function rules()
     {
