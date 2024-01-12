@@ -46,7 +46,7 @@ CREATE TABLE `think_auth_rule` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限路由表';
 ------------------------------
--- think_auth_role 用户组表
+-- think_auth_role,用户组表
 -- id:主键
 -- title:用户组中文名称
 -- status:状态:为1正常,为0禁用
@@ -60,7 +60,7 @@ CREATE TABLE `think_auth_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限组';
 
 ------------------------------
--- think_auth_role_user 用户与组关系表
+-- think_auth_role_user,用户与组关系表
 -- user_id:用户id
 -- role_id:用户组id
 ------------------------------
@@ -74,7 +74,7 @@ CREATE TABLE `think_auth_role_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户及用户组对应表';
 
 ------------------------------
--- think_auth_role_rule 用户与组关系表
+-- think_auth_role_rule,用户与组关系表
 -- rule_id:规则id
 -- role_id:用户组id
 ------------------------------
