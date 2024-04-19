@@ -29,8 +29,8 @@
 ------------------------------
 -- think_auth_rule,规则表
 -- id:主键
--- name:规则唯一标识
--- title:规则中文名称
+-- name:规则中文名称
+-- url:规则唯一标识
 -- status:状态:为1正常,为0禁用
 -- condition:规则表达式,为空表示存在就验证,不为空表示按照条件验证
 ------------------------------
@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `think_auth_rule`;
 CREATE TABLE `think_auth_rule` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `title` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `url` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `condition` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',

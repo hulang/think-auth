@@ -183,6 +183,7 @@ class Auth
                     $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
                     // dump($command);
                     // debug
+                    $condition = '';
                     @(eval('$condition=(' . $command . ');'));
                     if ($condition) {
                         $authList[] = strtolower($rule['name']);
