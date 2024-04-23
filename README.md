@@ -130,10 +130,12 @@ Auth类也可以对节点进行认证，我们只要将规则名称，定义为�
 可以在公共控制器方法或中间件中进行验证了，以下为中间件的示例
 
 可以通过命令行快速生成权限认证中间件
-```
+```php
 php think make:middleware Auth
 ```
+
 这个指令会 `application/http/middleware` 目录下面生成一个 Auth 中间件。
+
 ```php
 <?php
 namespace app\http\middleware;
