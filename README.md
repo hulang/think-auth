@@ -1,18 +1,18 @@
-## ThinkPHP 8.0.0 授权扩展包
+#### ThinkPHP 8.0.0 授权扩展包
 
-### 环境
+##### 环境
 
 - php >=8.0.0
 - ThinkPHP ^8.0
 
 > 修改自：zz-studio/think-auth
 
-## 安装
+#### 安装
 > composer require hulang/think-auth
 
-## 配置
+#### 配置
 
-### 公共配置
+##### 公共配置
 ```php
 // auth配置
 'auth'  => [
@@ -22,7 +22,7 @@
 ],
 ```
 
-### 导入数据表
+##### 导入数据表
 > `think_` 为自定义的数据表前缀
 
 ```sql
@@ -89,7 +89,7 @@ CREATE TABLE `think_auth_role_rule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限规则与用户组对应表';
 ```
 
-## 原理
+#### 原理
 Auth权限认证是按规则进行认证。
 在数据库中我们有 
 
@@ -104,7 +104,7 @@ Auth权限认证是按规则进行认证。
 
 我们要判断用户是否有显示一个操作按钮的权限， 首先定义一个规则， 在规则表中添加一个名为 show_button 的规则。 然后在用户组表添加一个用户组，定义这个用户组有show_button 的权限规则， 然后在用户与组关系表中定义 UID 为1 的用户 属于刚才这个的这个用户组。 
 
-## 使用
+#### 使用
 判断权限方法
 ```php
 // 引入类库
