@@ -62,7 +62,7 @@ CREATE TABLE `think_auth_role` (
 
 ------------------------------
 -- think_auth_role_user,用户与组关系表
--- id:自增
+-- id:主键
 -- user_id:用户id
 -- role_id:用户组id
 ------------------------------
