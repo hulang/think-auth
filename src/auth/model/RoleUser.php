@@ -13,13 +13,16 @@ use think\Model;
  */
 class RoleUser extends Model
 {
-    // 表名
+    /**
+     * 表名
+     * @var mixed|string|array
+     */
     protected $name = 'AuthRoleUser';
     /**
      * 数据表主键 复合主键使用数组定义
      * @var mixed|string|array
      */
-    protected $pk = 'role_id';
+    protected $pk = 'id';
 
     /**
      * 用户角色列表
