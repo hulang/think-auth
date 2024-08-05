@@ -15,12 +15,12 @@ class RoleUser extends Model
 {
     /**
      * 表名
-     * @var mixed|string|array
+     * @var mixed|string
      */
     protected $name = 'AuthRoleUser';
     /**
      * 数据表主键 复合主键使用数组定义
-     * @var mixed|string|array
+     * @var mixed|string
      */
     protected $pk = 'id';
 
