@@ -39,12 +39,13 @@ CREATE TABLE `think_auth_rule` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `url` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `type` tinyint(1) NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `type` int(1) NOT NULL DEFAULT '1',
+  `status` int(1) NOT NULL DEFAULT '1',
   `condition` varchar(200) CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限路由表';
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限路由' ROW_FORMAT = DYNAMIC;
+
 ------------------------------
 -- think_auth_role,用户组表
 -- id:主键
@@ -55,23 +56,23 @@ DROP TABLE IF EXISTS `think_auth_role`;
 CREATE TABLE `think_auth_role` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限组';
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限组' ROW_FORMAT = DYNAMIC;
 
 ------------------------------
 -- think_auth_role_user,用户与组关系表
+-- id:自增
 -- user_id:用户id
 -- role_id:用户组id
 ------------------------------
 DROP TABLE IF EXISTS `think_auth_role_user`;
-CREATE TABLE `think_auth_role_user` (
-  `user_id` bigint(20) unsigned NOT NULL,
-  `role_id` int(11) unsigned NOT NULL,
-  UNIQUE KEY `uid_group_id` (`user_id`,`role_id`),
-  KEY `uid` (`user_id`),
-  KEY `group_id` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户及用户组对应表';
+CREATE TABLE `hl_auth_role_user`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `role_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户及用户组对应' ROW_FORMAT = DYNAMIC;
 
 ------------------------------
 -- think_auth_role_rule,用户与组关系表
@@ -86,7 +87,7 @@ CREATE TABLE `think_auth_role_rule` (
   UNIQUE KEY `uid_group_id` (`rule_id`,`role_id`),
   KEY `uid` (`rule_id`),
   KEY `group_id` (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='权限规则与用户组对应表';
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限规则与用户组对应' ROW_FORMAT = DYNAMIC;
 ```
 
 #### 原理
