@@ -79,14 +79,12 @@ CREATE TABLE `hl_auth_role_user`  (
 -- rule_id:规则id
 -- role_id:用户组id
 ------------------------------
-DROP TABLE IF EXISTS `think_auth_role_rule`;
-CREATE TABLE `think_auth_role_rule` (
-  `rule_id` int(11) unsigned NOT NULL,
-  `role_id` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`rule_id`,`role_id`),
-  UNIQUE KEY `uid_group_id` (`rule_id`,`role_id`),
-  KEY `uid` (`rule_id`),
-  KEY `group_id` (`role_id`)
+DROP TABLE IF EXISTS `think_auth_role_user`;
+CREATE TABLE `hl_auth_role_user`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `rule_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `role_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限规则与用户组对应' ROW_FORMAT = DYNAMIC;
 ```
 
