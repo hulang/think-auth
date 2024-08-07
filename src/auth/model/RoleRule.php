@@ -22,7 +22,7 @@ class RoleRule extends Model
      * 数据表主键 复合主键使用数组定义
      * @var mixed|string|array
      */
-    protected $pk = 'id';
+    protected $pk = 'role_id';
     /**
      * 追加一对一字段
      * @var mixed|array
