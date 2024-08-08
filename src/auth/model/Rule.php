@@ -13,6 +13,9 @@ use think\Model;
  */
 class Rule extends Model
 {
-    // 表名
+    /**
+     * 表名
+     * @var mixed|string
+     */
     protected $name = 'AuthRule';
 }
