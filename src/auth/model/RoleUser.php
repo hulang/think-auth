@@ -18,6 +18,7 @@ class RoleUser extends Model
      * @var mixed|string
      */
     protected $name = 'AuthRoleUser';
+
     /**
      * 数据表主键 复合主键使用数组定义
      * @var mixed|string
