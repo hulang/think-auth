@@ -189,7 +189,7 @@ class Auth
 
 Auth 类 还可以多个规则一起认证 如:
 ```php
-$auth->check('rule1,rule2',uid); 
+$auth->check('rule1,rule2', uid);
 ```
 
 - 表示 认证用户只要有`rule1`的权限或`rule2`的权限
@@ -198,7 +198,7 @@ $auth->check('rule1,rule2',uid);
 - 我们也可以定义为`and`关系
 
 ```php
-$auth->check('rule1,rule2',uid,'and'); 
+$auth->check('rule1,rule2', uid, 'and');
 ```
 
 - 第三个参数指定为`and`表示多个规则以`and`关系进行认证,这时候多个规则同时通过认证才有权限
