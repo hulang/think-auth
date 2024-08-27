@@ -145,10 +145,13 @@ php think make:middleware Auth
 
 ```php
 <?php
+
+declare(strict_types=1);
+
 namespace app\http\middleware;
 
 use think\exception\HttpResponseException;
-use think\Auth AS AuthHandle;
+use think\Auth as AuthHandle;
 use traits\controller\Jump;
 
 class Auth
@@ -167,7 +170,7 @@ class Auth
         $allow = ['user/login'];
 
         $rule = strtolower("{$request->controller()}/{$request->action()}");
-        
+
         // 初始化 user_id
         $user_id = is_login();
 
@@ -179,8 +182,8 @@ class Auth
 
         return $next($request);
     }
-
 }
+
 ```
 这时候我们可以在数据库中添加的节点规则,格式为:`控制器名称/方法名称`
 
