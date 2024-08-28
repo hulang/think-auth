@@ -10,7 +10,7 @@ if (!function_exists('AuthCheck')) {
      * @param mixed|int $type 认证类型
      * @param mixed|string $mode 执行check的模式
      * @param mixed|string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为'and'则表示需满足所有规则才能通过验证
-     * @return mixed 通过验证返回true;失败返回false
+     * @return mixed|bool 通过验证返回true;失败返回false
      */
     function AuthCheck($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
     {

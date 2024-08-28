@@ -13,10 +13,9 @@ class Auth
 {
     /**
      * 当前用户模型
-     * @var mixed|array
+     * @var
      */
     protected $user;
-
     /**
      * 默认配置
      * @var mixed|array
@@ -29,7 +28,7 @@ class Auth
 
     /**
      * 类架构函数
-     * Auth constructor
+     * Auth constructor.
      */
     public function __construct()
     {
@@ -44,29 +43,27 @@ class Auth
 
     /**
      * 检查权限
-     * @param string|array $name 需要验证的规则列表,支持逗号分隔的权限规则或索引数组
-     * @param int $uid 认证用户的id
-     * @param int $type 认证类型
-     * @param string $mode 执行check的模式
-     * @param string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
+     * @param mixed|string|array $name 需要验证的规则列表,支持逗号分隔的权限规则或索引数组
+     * @param mixed|int $uid 认证用户的id
+     * @param mixed|int $type 认证类型
+     * @param mixed|string $mode 执行check的模式
+     * @param mixed|string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
      * @return mixed|bool 通过验证返回true;失败返回false
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function check($name, $uid = 0, $type = 1, $mode = 'url', $relation = 'or')
+    public function check($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
     {
         if (!$this->config['auth_on']) {
             return true;
         }
-
         // 获取用户需要验证的所有有效规则列表
         $authList = $this->getAuthList($uid, $type);
         if (is_string($name)) {
             $name = explode(',', strtolower($name));
         }
-
         // 保存验证通过的规则名
         $list = [];
         if ('url' == $mode) {
@@ -90,7 +87,6 @@ class Auth
                 }
             }
         }
-
         if ('or' == $relation && !empty($list)) {
             return true;
         }
@@ -103,15 +99,15 @@ class Auth
 
     /**
      * 返回用户的所有规则表
-     * @param int $uid 认证用户的id
-     * @param int $type 认证类型
-     * @return array|mixed
+     * @param mixed|int $uid 认证用户的id
+     * @param mixed|int $type 认证类型
+     * @return mixed|array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function rules($uid = 0, $type = 1)
+    public function rules($uid, $type = 1)
     {
         // 获取用户需要验证的所有有效规则列表
         return $this->getAuthList($uid, $type);
@@ -119,15 +115,15 @@ class Auth
 
     /**
      * 获取用户所有角色信息
-     * @param int $uid
-     * @param string $field
-     * @return array|false|mixed|\PDOStatement|string|\think\Collection
+     * @param mixed|int $uid
+     * @param mixed|string $field
+     * @return mixed|array|false|\PDOStatement|string|\think\Collection
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function roles($uid = 0, $field = '')
+    public function roles($uid, $field = '')
     {
         $role = RoleUser::where(['user_id' => $uid]);
         if (!empty($field)) {
@@ -138,15 +134,15 @@ class Auth
 
     /**
      * 获得权限列表
-     * @param int $uid 用户id
-     * @param mixed|array $type
-     * @return array|mixed
+     * @param integer $uid 用户id
+     * @param mixed $type
+     * @return mixed|array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    protected function getAuthList($uid = 0, $type)
+    protected function getAuthList($uid, $type)
     {
         // 保存用户验证通过的权限列表
         static $_authList = [];
@@ -173,8 +169,7 @@ class Auth
         } else {
             $user = [];
         }
-
-        // 循环规则,判断结果
+        // 循环规则,判断结果。
         $authList = [];
         foreach ($roles as $role) {
             foreach ($role->rules as $rule) {
@@ -199,7 +194,6 @@ class Auth
                 }
             }
         }
-
         $_authList[$uid . $t] = $authList;
         if (2 == $this->config['auth_type']) {
             // 规则列表结果保存到|session

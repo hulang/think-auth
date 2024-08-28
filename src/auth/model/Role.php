@@ -20,7 +20,7 @@ class Role extends Model
     protected $name = 'AuthRole';
 
     /**
-     * 删除角色时同时删除与规则,用户的关系数据
+     * 删除角色时同时删除与规则，用户的关系数据
      * @param \think\Model $user
      * @throws \Exception
      * @return mixed
