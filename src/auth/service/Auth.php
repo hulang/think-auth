@@ -70,13 +70,13 @@ class Auth
         }
         // 保存验证通过的规则名
         $list = [];
-        if ('url' == $mode) {
+        if ($mode == 'url') {
             $REQUEST = unserialize(strtolower(serialize(request()->param())));
         }
 
         foreach ($authList as $auth) {
             $query = preg_replace('/^.+\?/U', '', $auth);
-            if ('url' == $mode && $query != $auth) {
+            if ($mode == 'url' && $query != $auth) {
                 // 解析规则中的|param
                 parse_str($query, $param);
                 $intersect = array_intersect_assoc($REQUEST, $param);
@@ -91,11 +91,11 @@ class Auth
                 }
             }
         }
-        if ('or' == $relation && !empty($list)) {
+        if ($relation == 'or' && !empty($list)) {
             return true;
         }
         $diff = array_diff($name, $list);
-        if ('and' == $relation && empty($diff)) {
+        if ($relation == 'and' && empty($diff)) {
             return true;
         }
         return false;
