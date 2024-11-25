@@ -13,7 +13,7 @@ class Auth
 {
     /**
      * 当前用户模型
-     * @var
+     * @var mixed|string
      */
     protected $user;
 
@@ -24,7 +24,7 @@ class Auth
     protected $config = [
         // 权限开关
         'auth_on' => 1,
-        // 认证方式,1为实时认证；2为登录认证。
+        // 认证方式,1为实时认证;2为登录认证
         'auth_type' => 1,
         // 用户信息表
         'auth_user' => 'admin',
