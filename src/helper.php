@@ -12,7 +12,7 @@ if (!function_exists('AuthCheck')) {
      * @param mixed|string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为'and'则表示需满足所有规则才能通过验证
      * @return mixed|bool 通过验证返回true;失败返回false
      */
-    function AuthCheck($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
+    function AuthCheck($name = '', $uid = 0, $type = 1, $mode = 'url', $relation = 'or')
     {
         return \think\Auth::check($name, $uid, $type, $mode, $relation);
     }
@@ -25,7 +25,7 @@ if (!function_exists('getAuthRules')) {
      * @param mixed|int $type 认证类型
      * @return mixed
      */
-    function getAuthRules($uid, $type = 1)
+    function getAuthRules($uid = 0, $type = 1)
     {
         return \think\Auth::rules($uid, $type);
     }
