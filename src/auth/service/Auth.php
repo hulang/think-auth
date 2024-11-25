@@ -177,9 +177,9 @@ class Auth
         }
         // 循环规则,判断结果
         $authList = [];
-        foreach ($roles as $role) {
-            foreach ($role->rules as $rule) {
-                $rule = $rule->toArray();
+        foreach ($roles as $k => $v) {
+            foreach ($v->rules as $value) {
+                $rule = $value->toArray();
                 // 当规则为空或状态不为1时跳过
                 if (empty($rule) || $rule['status'] != '1') {
                     continue;
