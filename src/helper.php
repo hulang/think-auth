@@ -9,7 +9,7 @@ if (!function_exists('AuthCheck')) {
      * @param mixed|int $uid 认证用户的id
      * @param mixed|int $type 认证类型
      * @param mixed|string $mode 执行check的模式
-     * @param mixed|string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为'and'则表示需满足所有规则才能通过验证
+     * @param mixed|string $relation 如果为'or'表示满足任一条规则即通过验证;如果为'and'则表示需满足所有规则才能通过验证
      * @return mixed|bool 通过验证返回true;失败返回false
      */
     function AuthCheck($name = '', $uid = 0, $type = 1, $mode = 'url', $relation = 'or')
@@ -37,7 +37,7 @@ if (!function_exists('getAuthRoleIds')) {
      * 该函数通过调用 think\Auth 类的 roles 方法来获取指定用户的所有角色 id
      * 主要用于权限控制,确定用户拥有的角色,以便在应用中进行相应的权限判断和控制
      * 
-     * @param mixed|int $uid 用户 id,用于指定需要获取角色的用户 如果为 0,则表示获取当前会话用户的角色
+     * @param mixed|int $uid 用户id,用于指定需要获取角色的用户,如果为0,则表示获取当前会话用户的角色
      * @param mixed|string $field 指定返回角色的字段名,默认为'role_id',即角色 id
      * @return mixed 返回用户的所有角色id,类型取决于内部实现,可能是数组或其他形式
      */
