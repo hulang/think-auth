@@ -36,7 +36,7 @@ class Auth
      */
     public function __construct()
     {
-        // 可设置配置项 auth, 此配置项为数组。
+        // 可设置配置项auth,此配置项为数组
         $config = Config::get('auth', []);
         if (is_array($config)) {
             $this->config = array_merge($this->config, $config);
@@ -51,7 +51,7 @@ class Auth
      * @param mixed|int $uid 认证用户的id
      * @param mixed|int $type 认证类型
      * @param mixed|string $mode 执行check的模式
-     * @param mixed|string $relation 如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
+     * @param mixed|string $relation 如果为'or'表示满足任一条规则即通过验证;如果为'and'则表示需满足所有规则才能通过验证
      * @return mixed|bool 通过验证返回true;失败返回false
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
