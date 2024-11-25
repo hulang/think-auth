@@ -20,15 +20,19 @@ class Role extends Model
     protected $name = 'AuthRole';
 
     /**
-     * 删除角色时同时删除与规则，用户的关系数据
+     * 删除角色时同时删除与规则,用户的关系数据
      * @param \think\Model $user
      * @throws \Exception
      * @return mixed
      */
     public static function onAfterDelete($role)
     {
-        RoleRule::where(['role_id' => $role->id])->delete();
-        RoleUser::where('role_id', $role->id)->delete();
+        $map = [];
+        $map[] = ['role_id', '=', $role->id];
+        RoleRule::where($map)->delete();
+        $where = [];
+        $where[] = ['role_id', '=', $role->id];
+        RoleUser::where($where)->delete();
     }
 
     /**
@@ -59,7 +63,9 @@ class Role extends Model
     protected function getUserNumAttr()
     {
         $role_id = $this->getData('id');
-        return RoleUser::where(['role_id' => $role_id])->count();
+        $map = [];
+        $map[] = ['role_id', '=', $role_id];
+        return RoleUser::where($map)->count();
     }
 
     /**
