@@ -16,19 +16,23 @@ class Auth
      * @var
      */
     protected $user;
+
     /**
      * 默认配置
      * @var mixed|array
      */
     protected $config = [
-        'auth_on' => 1, // 权限开关
-        'auth_type' => 1, // 认证方式,1为实时认证；2为登录认证。
-        'auth_user' => 'admin', // 用户信息表
+        // 权限开关
+        'auth_on' => 1,
+        // 认证方式,1为实时认证；2为登录认证。
+        'auth_type' => 1,
+        // 用户信息表
+        'auth_user' => 'admin',
     ];
 
     /**
      * 类架构函数
-     * Auth constructor.
+     * Auth constructor
      */
     public function __construct()
     {
@@ -54,7 +58,7 @@ class Auth
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function check($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
+    public function check($name = '', $uid = 0, $type = 1, $mode = 'url', $relation = 'or')
     {
         if (!$this->config['auth_on']) {
             return true;
@@ -107,7 +111,7 @@ class Auth
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function rules($uid, $type = 1)
+    public function rules($uid = 0, $type = 1)
     {
         // 获取用户需要验证的所有有效规则列表
         return $this->getAuthList($uid, $type);
@@ -123,9 +127,11 @@ class Auth
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    public function roles($uid, $field = '')
+    public function roles($uid = 0, $field = '')
     {
-        $role = RoleUser::where(['user_id' => $uid]);
+        $map = [];
+        $map[] = ['user_id', '=', $uid];
+        $role = RoleUser::where($map);
         if (!empty($field)) {
             return $role->column($field);
         }
@@ -142,7 +148,7 @@ class Auth
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    protected function getAuthList($uid, $type)
+    protected function getAuthList($uid = 0, $type)
     {
         // 保存用户验证通过的权限列表
         static $_authList = [];
@@ -152,7 +158,7 @@ class Auth
             return $_authList[$uid . $t];
         }
 
-        if (2 == $this->config['auth_type'] && Session::has('_auth_list_' . $uid . $t)) {
+        if ($this->config['auth_type'] && Session::has('_auth_list_' . $uid . $t) == 2) {
             return Session::get('_auth_list_' . $uid . $t);
         }
 
@@ -169,7 +175,7 @@ class Auth
         } else {
             $user = [];
         }
-        // 循环规则,判断结果。
+        // 循环规则,判断结果
         $authList = [];
         foreach ($roles as $role) {
             foreach ($role->rules as $rule) {
@@ -195,11 +201,23 @@ class Auth
             }
         }
         $_authList[$uid . $t] = $authList;
-        if (2 == $this->config['auth_type']) {
+
+        if ($this->config['auth_type'] == 2) {
             // 规则列表结果保存到|session
             Session::set('_auth_list_' . $uid . $t, $authList);
         }
 
-        return array_unique($authList);
+        $list = [];
+        $n = 0;
+        $authList = array_unique($authList);
+        foreach ($authList as $k => $v) {
+            if (!empty($v)) {
+                $list[$n] = $v;
+                $n++;
+            }
+        }
+        sort($list);
+
+        return $list;
     }
 }
