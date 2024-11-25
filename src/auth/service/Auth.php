@@ -140,19 +140,19 @@ class Auth
 
     /**
      * 获得权限列表
-     * @param integer $uid 用户id
-     * @param mixed $type
+     * @param int $uid 用户id
+     * @param int|mixed $type
      * @return mixed|array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      */
-    protected function getAuthList($uid = 0, $type)
+    protected function getAuthList($uid = 0, $type = 0)
     {
         // 保存用户验证通过的权限列表
         static $_authList = [];
-        $t = implode(',', (array)$type);
+        $t = $type;
 
         if (isset($_authList[$uid . $t])) {
             return $_authList[$uid . $t];
